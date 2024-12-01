@@ -1,6 +1,6 @@
 {
   "name": "@nousantx/tenoxui-styler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TenoxUI config generator",
   "author": "NOuSantx <nousantx@gmail.com>",
   "license": "MIT",
@@ -16,8 +16,7 @@
     "package.json"
   ],
   "types": "./dist/index.d.ts",
-  "main": "./dist/index.min.cjs",
-  "module": "./dist/index.esm.min.js",
+  "main": "./dist/index.esm.min.js",
   "browser": "./dist/index.umd.min.js",
   "scripts": {
     "build": "rollup -c",
