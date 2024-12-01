@@ -1,22 +1,8 @@
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import type { CoreConfig, Property, Values, Classes, Aliases, Breakpoint } from '@tenoxui/core/full'
 import { merge, createProperty } from '@nousantx/someutils'
 import { generateColors } from '@nousantx/color-generator'
-import type { ColorOptions, ColorInput } from '@nousantx/color-generator'
-
-export interface Config {
-  property: Property
-  coloredProperty: Property
-  values: Values
-  classes: Classes
-  aliases: Aliases
-  breakpoints: Breakpoint[]
-  color: ColorInput
-  colorOption: ColorOptions
-  attributify: boolean
-  attributifyPrefix: string
-  attributifyIgnore: string[]
-}
+import type { CoreConfig, Property, Values } from '@tenoxui/core/full'
+import { Config } from './types'
 
 export function createConfig(config: Config): CoreConfig {
   const {
@@ -60,10 +46,11 @@ export function createConfig(config: Config): CoreConfig {
 }
 
 export function init(config: CoreConfig, selectors: string = '*') {
-  document.querySelectorAll(selectors).forEach((element) => {
+  document.querySelectorAll(selectors).forEach(element => {
     new MakeTenoxUI({ element: element as HTMLElement, ...config }).useDOM()
   })
 }
 
 export * from '@tenoxui/core/full'
 export * from '@nousantx/someutils'
+export { Config } from './types'
