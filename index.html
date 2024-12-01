@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./dist/index.umd.js"></script>
+  </head>
+  <body>
+    <div class="bgc-red">helli</div>
+
+    <script>
+      document.querySelectorAll('*').forEach((element) => {
+        __nsx_tui_styles.init(
+          element,
+          __nsx_tui_styles.createConfig({
+            property: {
+              bgc: 'backgroundColor'
+            }
+          })
+        )
+      })
+    </script>
+  </body>
+</html>
