@@ -59,7 +59,7 @@ export function createConfig(config: Config): CoreConfig {
   }
 }
 
-export function init(selectors: string = '*', config: CoreConfig) {
+export function init(config: CoreConfig, selectors: string = '*') {
   document.querySelectorAll(selectors).forEach((element) => {
     new MakeTenoxUI({ element: element as HTMLElement, ...config }).useDOM()
   })

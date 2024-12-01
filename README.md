@@ -1,64 +1,38 @@
-# TenoxUI Styles Kit
-
-## About
-
-This package contains predefined UI class names you can use for your tenoxui project, such as `btn`, `btn-sm`, `badge`, `text-2xl`, and many more. With this library, you don't need to re create same styles on every projects.
+# TenoxUI Styler
 
 ## Usage
 
-### Install Dependencies
-
-```
-npm install @tenoxui/core @nousantx/tenoxui-utility-styles @nousantx/tenoxui-image-generator-config -D
-```
-
-### React/Preact Example
-
-Create `styler.js` file :
+### React
 
 ```javascript
-import { useLayoutEffect } from 'react' // or 'preact/hooks'
-import { MakeTenoxUI } from '@tenoxui/core'
-import { config } from '@nousantx/tenoxui-image-generator-config'
-import { templates } from '@nousantx/tenoxui-utility-styles'
+import { useLayoutEffect } from '@nousantx/tenoxui/styler'
+import { init, createConfig } from '@nousantx/tenoxui/styler'
 
-export const styler = () => {
+export function App() {
   useLayoutEffect(() => {
-    document.querySelectorAll('*[class]').forEach((element) => {
-      new MakeTenoxUI({
-        ...config,
-        element,
-        aliases: templates.all
-      }).useDOM()
+    const config = createConfig({
+      property: { bg: 'background' }
     })
+
+    init(config, '*[class]')
   }, [])
+
+  return <div class="bg-red"></div>
 }
 ```
 
-Use in your component :
+### HTML / UMD
 
-```javascript
-import { styler } from './styler'
+```html
+<script src="https://cdn.jsdelivr.net/npm/@nousantx/tenoxui-styler@0.1.0/dist/index.umd.min.js"></script>
+<script>
+  const config = __nsx_styler.createConfig({
+    property: { bg: 'background' }
+  })
 
-const App = () => {
-  styler()
-  return (
-    <div className="flex gap-2rem">
-      <button className="btn">Button</button>
-      <button className="btn btn-ghost">Button</button>
-
-      <span className="badge badge-danger">Button</span>
-
-      <h1 class="text-2xl">Hello</h1>
-      <p class="text-md">Lorem ipsum dolor sit amet.</p>
-    </div>
-  )
-}
-
-export default App
+  __nsx_styler.init(config, '*[class]')
+</script>
 ```
-
-This library not only can be used in your react project. But make sure to use `tenoxui/core v1.3+`.
 
 ## LICENSE
 
