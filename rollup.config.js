@@ -8,11 +8,8 @@ import terser from '@rollup/plugin-terser'
 const packageJson = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'))
 const name = '__nsx_styler'
 const banner = `/*!
- * ${packageJson.name} v${packageJson.version} | ${packageJson.license} License
- *
- * Copyright (c) 2024-present NOuSantx <nousantx@gmail.com>
- *
- * Built Date: ${new Date().toString()}
+ * ${packageJson.name.slice(10)} v${packageJson.version} | ${packageJson.license} License
+ * Copyright (c) 2024-present NOuSantx
  */`
 const sourcemap = true //# PROD_TRUE
 
