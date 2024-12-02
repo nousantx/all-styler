@@ -1,5 +1,6 @@
-import type { Property, Values, Classes, Aliases, Breakpoint } from '@tenoxui/core/full'
+import type { CoreConfig, Property, Values, Classes, Aliases, Breakpoint } from '@tenoxui/core/full'
 import type { ColorOptions, ColorInput } from '@nousantx/color-generator'
+
 export interface Config {
   property?: Property
   coloredProperty?: Property
@@ -10,6 +11,5 @@ export interface Config {
   color?: ColorInput
   colorOption?: ColorOptions
   attributify?: boolean
-  attributifyPrefix?: string
-  attributifyIgnore?: string[]
+  tenoxuiOption: CoreConfig
 }
