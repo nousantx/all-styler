@@ -6,7 +6,7 @@ import { Config } from './types'
 
 export function createConfig(config: Config): CoreConfig {
   const {
-    property = { tenoxui: '--hello-tenoxui' },
+    property = {},
     coloredProperty = {
       bg: 'backgroundColor',
       text: 'color'
@@ -18,8 +18,7 @@ export function createConfig(config: Config): CoreConfig {
     color = { red: '#ef3737' },
     colorOption = { format: 'object2', output: 'rgb-only' },
     attributify = true,
-    attributifyPrefix = 'tui-',
-    attributifyIgnore = []
+    tenoxuiOption = {}
   } = config
 
   const colors = generateColors({
@@ -29,19 +28,18 @@ export function createConfig(config: Config): CoreConfig {
 
   return {
     property: {
+      ...property,
       ...(createProperty(
         coloredProperty as Record<string, string>,
         'rgb({0} / var(--{1}-opacity, 1))'
-      ) as Property),
-      ...property
+      ) as Property)
     },
     values: merge(colors, values) as Values,
     classes,
     aliases,
     breakpoints,
     attributify,
-    attributifyPrefix,
-    attributifyIgnore
+    ...tenoxuiOption
   }
 }
 
@@ -51,6 +49,13 @@ export function init(config: CoreConfig, selectors: string = '*') {
   })
 }
 
-export * from '@tenoxui/core/full'
-export * from '@nousantx/someutils'
 export { Config } from './types'
+export { MakeTenoxUI } from '@tenoxui/core/full'
+export type { CoreConfig, Property, Values, Classes, Aliases, Breakpoint } from '@tenoxui/core/full'
+export {
+  merge,
+  transformClasses,
+  createValue,
+  createSameValue,
+  createProperty
+} from '@nousantx/someutils'
