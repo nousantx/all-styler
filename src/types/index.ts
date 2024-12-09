@@ -11,5 +11,6 @@ export interface Config {
   color?: ColorInput
   colorOption?: ColorOptions
   attributify?: boolean
-  tenoxuiOption: CoreConfig
+  attributifyPrefix?: string
+  tenoxuiOption?: CoreConfig
 }
