@@ -42,15 +42,15 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@nousantx/color-generator@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@nousantx/color-generator/-/color-generator-1.5.0.tgz#4dc47ada1c034b4bf6d8e37eccc01f5ce3f054ec"
-  integrity sha512-M3VCUIqvbfyW2znsAIc/77MKUXqiCcvb3qI7kOm+vkUf5PGAyQ5VyPtVsMrLXi8FxbTrzsGv1SRZLq7bc1xelg==
+"@nousantx/color-generator@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@nousantx/color-generator/-/color-generator-1.5.1.tgz#6bae0cd3539ee3e1be7f4a369e5eaf1675071c46"
+  integrity sha512-WO0EvIyHqbG05R3WAPY4kKsq4133qY+BC4crKT/NUfrDjeVfmi876A9kZDs26znYy1YQmq6ePBGWPufPPgV4XA==
 
-"@nousantx/someutils@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@nousantx/someutils/-/someutils-0.6.0.tgz#86fd5fcaa1aedfad1353146d1ebeb042b5c2e1b8"
-  integrity sha512-GehZXF8mSE+k9Z01N202RMvm9dR+TovXEhqstyIigMj3Z9b/KBjWgD+3ElbYBXlBA33u4iOm0xeVhXU6VN0rGQ==
+"@nousantx/someutils@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@nousantx/someutils/-/someutils-0.6.1.tgz#dec7d3bfbdf644ad6793c3255ca9a8a8347cb5f5"
+  integrity sha512-Esbr13Jb8YmBVMbL+fcqWpmLDf6wFCOVBwnOwIu/0vvB42MzSOeRgoX2j08t04ZksHeiydzQDTMqQZBA1l4eeg==
 
 "@nousantx/tenoxui-image-generator-config@^0.1.1":
   version "0.1.1"
