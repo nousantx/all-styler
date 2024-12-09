@@ -1,8 +1,9 @@
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import { property as txProps } from '@tenoxui/property'
-import { merge, createProperty } from '@nousantx/someutils'
+import { merge, transformClasses } from '@nousantx/someutils'
 import { generateColors } from '@nousantx/color-generator'
-import type { CoreConfig, Property, Values } from '@tenoxui/core/full'
+import type { CoreConfig, Values, Classes } from '@tenoxui/core/full'
+import { createProperties } from './lib/properties'
+import { createValues } from './lib/values'
 import { Config } from './types'
 
 export function createConfig({
@@ -10,6 +11,7 @@ export function createConfig({
   coloredProperty = { 'use-tenoxui': '--colored-feature-tenoxui' },
   values = {},
   classes = {},
+  utilityClasses = {},
   aliases = {},
   breakpoints = [],
   color = { red: '#ef3737' },
@@ -24,22 +26,9 @@ export function createConfig({
   }) as Values
 
   return {
-    property: {
-      // Added tenoxui default properties
-      ...txProps,
-      ...property,
-      // Put the coloredProperty in the end to prioritize this
-      ...(createProperty(
-        coloredProperty as Record<string, string>,
-        'rgb({0} / var(--{1}-opacity, 1))'
-      ) as Property),
-      ...(Object.keys(coloredProperty).reduce<Record<string, string>>((acc, item) => {
-        acc[`${item}-opacity`] = `--${item}-opacity`
-        return acc
-      }, {}) as Property)
-    },
-    values: merge(colors, values) as Values,
-    classes,
+    property: createProperties(property, coloredProperty),
+    values: createValues(values, colors),
+    classes: merge(transformClasses(utilityClasses), classes) as Classes,
     aliases,
     breakpoints,
     attributify,
@@ -48,14 +37,21 @@ export function createConfig({
   }
 }
 
-export function init(
-  config: CoreConfig,
-  selectors: string = '*',
-  engine: typeof MakeTenoxUI = MakeTenoxUI
-) {
-  console.log(config)
+interface MainOption {
+  config: CoreConfig
+  selectors?: string
+  useDOM?: boolean
+  engine?: typeof MakeTenoxUI
+}
+
+export function init(options: MainOption) {
+  const { config = {}, selectors = '*', useDOM = true, engine = MakeTenoxUI } = options
+
   document.querySelectorAll(selectors).forEach((element) => {
-    new engine({ element: element as HTMLElement, ...config }).useDOM()
+    const styler = new engine({ element: element as HTMLElement, ...config })
+
+    if (useDOM) styler.useDOM()
+    else element.classList.forEach((className) => styler.applyStyles(className))
   })
 }
 
