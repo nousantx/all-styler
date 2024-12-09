@@ -6,20 +6,22 @@ import { createProperties } from './lib/properties'
 import { createValues } from './lib/values'
 import { Config } from './types'
 
-export function createConfig({
-  property = {},
-  coloredProperty = { 'use-tenoxui': '--colored-feature-tenoxui' },
-  values = {},
-  classes = {},
-  utilityClasses = {},
-  aliases = {},
-  breakpoints = [],
-  color = { red: '#ef3737' },
-  colorOption = { format: 'object2', output: 'rgb-only' },
-  attributify = true,
-  attributifyPrefix = 'nsx-',
-  tenoxuiOption = {}
-}: Config): CoreConfig {
+export function createConfig(options: Config = {}): CoreConfig {
+  const {
+    property = { 'nsx-tenoxui-template': '--ignore-this' },
+    coloredProperty = { 'use-tenoxui': '--colored-feature-tenoxui' },
+    values = {},
+    classes = {},
+    utilityClasses = {},
+    aliases = {},
+    breakpoints = [],
+    color = { red: '#ef3737' },
+    colorOption = { format: 'object2', output: 'rgb-only' },
+    attributify = true,
+    attributifyPrefix = 'nsx-',
+    tenoxuiOption = {}
+  } = options
+
   const colors = generateColors({
     option: colorOption,
     color
