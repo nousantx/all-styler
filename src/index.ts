@@ -3,6 +3,8 @@ import { merge, transformClasses } from '@nousantx/someutils'
 import { generateColors } from '@nousantx/color-generator'
 import type { CoreConfig, Values, Classes } from '@tenoxui/core/full'
 import { createProperties } from './lib/properties'
+import { defaultClasses } from './lib/classes'
+import { colors as defaultColors } from './lib/color'
 import { createValues } from './lib/values'
 import { Config } from './types'
 
@@ -24,14 +26,22 @@ export function createConfig(options: Config = {}): CoreConfig {
 
   const colors = generateColors({
     option: colorOption,
-    color
+    color: { ...defaultColors, ...color }
   }) as Values
 
   return {
     property: createProperties(property, coloredProperty),
     values: createValues(values, colors),
-    classes: merge(transformClasses(utilityClasses), classes) as Classes,
-    aliases,
+    classes: merge(defaultClasses, transformClasses(utilityClasses), classes) as Classes,
+    aliases: {
+      'grid-column': '[gridTemplateColumns]-none',
+      'grid-cols-none': '[gridTemplateColumns]-none',
+      'grid-cols-subgrid': '[gridTemplateRoes]-subgrid',
+      'grid-rows-none': '[gridTemplateColumns]-none',
+      'grid-rows-subgrid': '[gridTemplateRows]-subgrid',
+      'col-span-full': '[gridColumn]-[1_/_-1]]',
+      ...aliases
+    },
     breakpoints,
     attributify,
     attributifyPrefix,
@@ -41,19 +51,26 @@ export function createConfig(options: Config = {}): CoreConfig {
 
 interface MainOption {
   config: CoreConfig
+  root?: HTMLElement
   selectors?: string
   useDOM?: boolean
   engine?: typeof MakeTenoxUI
 }
 
 export function init(options: MainOption) {
-  const { config = {}, selectors = '*', useDOM = true, engine = MakeTenoxUI } = options
+  const {
+    config = {},
+    root = document,
+    selectors = '*',
+    useDOM = true,
+    engine = MakeTenoxUI
+  } = options
 
-  document.querySelectorAll(selectors).forEach((element) => {
+  root.querySelectorAll(selectors).forEach(element => {
     const styler = new engine({ element: element as HTMLElement, ...config })
 
     if (useDOM) styler.useDOM()
-    else element.classList.forEach((className) => styler.applyStyles(className))
+    else element.classList.forEach(className => styler.applyStyles(className))
   })
 }
 

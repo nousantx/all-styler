@@ -1,6 +1,7 @@
 import type { Property, GetCSSProperty, CSSVariable } from '@tenoxui/core/full'
-import { property as txProps } from '@tenoxui/property'
 import { createProperty } from '@nousantx/someutils'
+import { defaultProperties, defaultColoredProperties } from './default'
+
 type PropertyMapping = Record<string, string>
 
 export const createProperties = (
@@ -16,7 +17,7 @@ export const createProperties = (
 
   // generate color property shorthand
   const createColorProperty = createProperty(
-    coloredProperty as Record<string, string>,
+    { ...defaultColoredProperties, ...coloredProperty } as Record<string, string>,
     'rgb({0} / var(--{1}-opacity, 1))'
   ) as Property
 
@@ -77,7 +78,7 @@ export const createProperties = (
     // create CSS variables to change the opacity from the coloredProperty
     ...cssVariableColor,
     // tenoxui's default properties
-    ...txProps,
+    ...defaultProperties,
     // user config properties
     ...property,
     // colored properties, prioritize them
