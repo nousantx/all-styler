@@ -66,11 +66,11 @@ export function init(options: MainOption) {
     engine = MakeTenoxUI
   } = options
 
-  root.querySelectorAll(selectors).forEach(element => {
+  root.querySelectorAll(selectors).forEach((element) => {
     const styler = new engine({ element: element as HTMLElement, ...config })
 
     if (useDOM) styler.useDOM()
-    else element.classList.forEach(className => styler.applyStyles(className))
+    else element.classList.forEach((className) => styler.applyStyles(className))
   })
 }
 

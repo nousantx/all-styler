@@ -22,13 +22,12 @@ export const createProperties = (
   ) as Property
 
   // generate css variable shorthand from coloredProperty
-  const cssVariableColor = Object.keys(coloredProperty).reduce<Record<string, CSSVariable>>(
-    (acc, item) => {
-      acc[`${item}-opacity`] = `--${item}-opacity`
-      return acc
-    },
-    {}
-  ) as Property
+  const cssVariableColor = Object.keys({ ...defaultColoredProperties, ...coloredProperty }).reduce<
+    Record<string, CSSVariable>
+  >((acc, item) => {
+    acc[`${item}-opacity`] = `--${item}-opacity`
+    return acc
+  }, {}) as Property
 
   const myProperties = {
     transform: 'transform',
@@ -75,13 +74,15 @@ export const createProperties = (
   return {
     // my properties
     ...myProperties,
-    // create CSS variables to change the opacity from the coloredProperty
-    ...cssVariableColor,
     // tenoxui's default properties
     ...defaultProperties,
     // user config properties
     ...property,
+    // create CSS variables to change the opacity from the coloredProperty
+    ...cssVariableColor,
     // colored properties, prioritize them
     ...createColorProperty
   }
+  
+  
 }
