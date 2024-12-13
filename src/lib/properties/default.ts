@@ -8,8 +8,7 @@ export const defaultColoredProperties: Property = {
 export const defaultProperties: Property = {
   // css variable
   shadow: '--nsx_shadow-color',
-  ring: '--nsx_ring-color',
-  'ring-offset': '--nsx_ring-offset-color',
+
   // padding
   p: 'padding',
   pt: 'paddingTop',

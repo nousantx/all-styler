@@ -83,6 +83,4 @@ export const createProperties = (
     // colored properties, prioritize them
     ...createColorProperty
   }
-  
-  
 }
