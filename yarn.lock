@@ -390,6 +390,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+tenoxui-plugin-utility@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/tenoxui-plugin-utility/-/tenoxui-plugin-utility-0.1.1.tgz#eb490b83a5899e86f587b331ada0c9594c54c27b"
+  integrity sha512-M3yQmf7nPRcxMlQ4Ji5Pu66xQf7eqnABj6St/MKSk7LmchH5sXBtQZMRQ7HuZ0apcPbVal4Pu4XL8d2c3zS0Mw==
+
 terser@^5.17.4:
   version "5.36.0"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.36.0.tgz#8b0dbed459ac40ff7b4c9fd5a3a2029de105180e"

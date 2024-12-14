@@ -34,6 +34,7 @@
     "@tenoxui/property": "^1.4.5",
     "@types/node": "^22.7.6",
     "rollup": "^4.24.0",
+    "tenoxui-plugin-utility": "^0.1.1",
     "tslib": "^2.7.0",
     "typescript": "^5.6.2"
   }
