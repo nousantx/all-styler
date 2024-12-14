@@ -4,9 +4,9 @@ import { generateColors } from '@nousantx/color-generator'
 import type { CoreConfig, Values, Classes } from '@tenoxui/core/full'
 import { createProperties } from './lib/properties'
 import { defaultClasses } from './lib/classes'
+import { defaultBreakpoints } from './lib/breakpoints'
 import { colors as defaultColors } from './lib/color'
-import { createValues } from './lib/values'
-import { Config } from './types'
+import { Config, MainOption } from './types'
 
 export function createConfig(options: Config = {}): CoreConfig {
   const {
@@ -17,44 +17,40 @@ export function createConfig(options: Config = {}): CoreConfig {
     utilityClasses = {},
     aliases = {},
     breakpoints = [],
-    color = { red: '#ef3737' },
+    color = {},
     colorOption = { format: 'object2', output: 'rgb-only' },
     attributify = true,
     attributifyPrefix = 'nsx-',
+    plugins = [],
     tenoxuiOption = {}
   } = options
 
+  // generate color aliases for tenoxui
   const colors = generateColors({
     option: colorOption,
     color: { ...defaultColors, ...color }
   }) as Values
 
-  return {
-    property: createProperties(property, coloredProperty),
-    values: createValues(values, colors),
-    classes: merge(defaultClasses, transformClasses(utilityClasses), classes) as Classes,
-    aliases: {
-      'grid-column': '[gridTemplateColumns]-none',
-      'grid-cols-none': '[gridTemplateColumns]-none',
-      'grid-cols-subgrid': '[gridTemplateRoes]-subgrid',
-      'grid-rows-none': '[gridTemplateColumns]-none',
-      'grid-rows-subgrid': '[gridTemplateRows]-subgrid',
-      'col-span-full': '[gridColumn]-[1_/_-1]]',
-      ...aliases
-    },
-    breakpoints,
-    attributify,
-    attributifyPrefix,
-    ...tenoxuiOption
-  }
-}
+  // added custom plugins field
+  // see https://github.com/nousantx/tenoxui-styles-kit
+  const usedPlugins = plugins.reduce((acc, plugin) => {
+    return merge(acc, plugin)
+  }, {})
 
-interface MainOption {
-  config: CoreConfig
-  root?: HTMLElement
-  selectors?: string
-  useDOM?: boolean
-  engine?: typeof MakeTenoxUI
+  return merge(
+    {
+      property: createProperties(property, coloredProperty),
+      values: merge(colors, values),
+      classes: merge(defaultClasses, transformClasses(utilityClasses), classes) as Classes,
+      aliases,
+      breakpoints: [...defaultBreakpoints, ...breakpoints],
+      attributify,
+      attributifyPrefix,
+      ...tenoxuiOption
+    },
+    // assign the plugins with the config
+    usedPlugins
+  )
 }
 
 export function init(options: MainOption) {
@@ -66,11 +62,14 @@ export function init(options: MainOption) {
     engine = MakeTenoxUI
   } = options
 
-  root.querySelectorAll(selectors).forEach((element) => {
+  root.querySelectorAll(selectors).forEach(element => {
+    // create tenoxui instance
     const styler = new engine({ element: element as HTMLElement, ...config })
 
+    // if the MutationObserver is available, use this instead
     if (useDOM) styler.useDOM()
-    else element.classList.forEach((className) => styler.applyStyles(className))
+    // using class names scan method without MutationObserver
+    else element.classList.forEach(className => styler.applyStyles(className))
   })
 }
 
