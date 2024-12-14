@@ -8,6 +8,7 @@ import type {
   Aliases,
   Breakpoint
 } from '@tenoxui/core/full'
+import { MakeTenoxUI } from '@tenoxui/core/full'
 import type { ColorOptions, ColorInput } from '@nousantx/color-generator'
 
 export type UtilityClasses = {
@@ -29,4 +30,13 @@ export interface Config {
   attributify?: boolean
   attributifyPrefix?: string
   tenoxuiOption?: CoreConfig
+  plugins?: CoreConfig[]
+}
+
+export interface MainOption {
+  config: CoreConfig
+  root?: HTMLElement
+  selectors?: string
+  useDOM?: boolean
+  engine?: typeof MakeTenoxUI
 }
