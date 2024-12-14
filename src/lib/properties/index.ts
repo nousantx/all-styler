@@ -2,19 +2,10 @@ import type { Property, GetCSSProperty, CSSVariable } from '@tenoxui/core/full'
 import { createProperty } from '@nousantx/someutils'
 import { defaultProperties, defaultColoredProperties } from './default'
 
-type PropertyMapping = Record<string, string>
-
 export const createProperties = (
   property: Property,
   coloredProperty: Record<string, GetCSSProperty>
 ): Property => {
-  const createMapping = (properties: string[], prefix: string): PropertyMapping => {
-    return properties.reduce<PropertyMapping>((acc, prop) => {
-      acc[prop] = `${prefix}${prop.replace(/-/g, '_')}`
-      return acc
-    }, {})
-  }
-
   // generate color property shorthand
   const createColorProperty = createProperty(
     { ...defaultColoredProperties, ...coloredProperty } as Record<string, string>,
@@ -31,44 +22,7 @@ export const createProperties = (
 
   const myProperties = {
     transform: 'transform',
-    filter: 'filter',
-    // transform property
-    ...createMapping(
-      [
-        'rotate',
-        'rotate-y',
-        'rotate-x',
-        'rotate-z',
-        'scale',
-        'scale-x',
-        'scale-y',
-        'scale-z',
-        'skew',
-        'skew-x',
-        'skew-y',
-        'translate',
-        'translate-x',
-        'translate-y',
-        'translate-z'
-      ],
-      '--nsx_'
-    ),
-    // filter property
-    ...createMapping(
-      [
-        'blur',
-        'brightness',
-        'contrast',
-        'grayscale',
-        'hue-rotate',
-        'invert',
-        'opacity',
-        'saturate',
-        'sepia',
-        'drop-shadow'
-      ],
-      '--nsx_'
-    )
+    filter: 'filter'
   } as Property
 
   return {

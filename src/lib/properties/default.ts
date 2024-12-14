@@ -6,8 +6,6 @@ export const defaultColoredProperties: Property = {
 }
 
 export const defaultProperties: Property = {
-  // css variable
-  shadow: '--nsx_shadow-color',
 
   // padding
   p: 'padding',
@@ -69,27 +67,7 @@ export const defaultProperties: Property = {
   'flex-b': 'flexBasis',
   'flex-g': 'flexGrow',
   'flex-s': 'flexShrink',
-  // grid layout
-  'grid-cols': {
-    property: 'gridTemplateColumns',
-    value: 'repeat({0}, minmax(0, 1fr))'
-  },
-  'grid-rows': {
-    property: 'gridTemplateRows',
-    value: 'repeat({0}, minmax(0, 1fr))'
-  },
-  'col-start': 'gridColumnStart',
-  'col-end': 'gridColumnEnd',
-  'row-start': 'gridRowStart',
-  'row-end': 'gridRowEnd',
-  'col-span': {
-    property: 'gridColumn',
-    value: 'span {0} / span {0}'
-  },
-  'row-span': {
-    property: 'gridRow',
-    value: 'span {0} / span {0}'
-  },
+  
   // gap
   gap: 'gap',
   'gap-y': 'columnGap',
@@ -107,19 +85,6 @@ export const defaultProperties: Property = {
   br: 'borderRadius',
   bs: 'borderStyle',
   bw: 'borderWidth',
-  'bw-y': ['borderTopWidth', 'borderBottomWidth'],
-  'bw-x': ['borderLeftWidth', 'borderRightWidth'],
-  'bw-left': 'borderLeftWidth',
-  'bw-bottom': 'borderBottomWidth',
-  'bw-right': 'borderRightWidth',
-  'br-t': ['borderTopRightRadius', 'borderTopLeftRadius'],
-  'br-b': ['borderBottomRightRadius', 'borderBottomLeftRadius'],
-  'br-l': ['borderBottomLeftRadius', 'borderTopLeftRadius'],
-  'br-r': ['borderBottomRightRadius', 'borderTopRightRadius'],
-  'br-tl': 'borderTopLeftRadius',
-  'br-tr': 'borderTopRightRadius',
-  'br-bl': 'borderBottomLeftRadius',
-  'br-br': 'borderBottomRightRadius',
   // cursor
   cursor: 'cursor',
   // overflow
