@@ -10,15 +10,15 @@ import { Config, MainOption } from './types'
 
 export function createConfig(options: Config = {}): CoreConfig {
   const {
-    property = { 'nsx-tenoxui-template': '--ignore-this' },
-    coloredProperty = { 'use-tenoxui': '--colored-feature-tenoxui' },
-    values = {},
-    classes = {},
-    utilityClasses = {},
-    aliases = {},
-    breakpoints = [],
+    shorthand = { 'nsx-tenoxui-template': '--ignore-this' },
+    coloredShorthand = { 'use-tenoxui': '--colored-feature-tenoxui' },
+    valueAlias = {},
+    utilityFirst = {},
+    utilityClass = {},
+    alias = {},
+    breakpoint = [],
     color = {},
-    colorOption = { format: 'object2', output: 'rgb-only' },
+    isDark = false,
     attributify = true,
     attributifyPrefix = 'nsx-',
     plugins = [],
@@ -27,7 +27,11 @@ export function createConfig(options: Config = {}): CoreConfig {
 
   // generate color aliases for tenoxui
   const colors = generateColors({
-    option: colorOption,
+    option: { format: 'object2', output: 'rgb-only', reverse: isDark },
+    color: { ...defaultColors, ...color }
+  }) as Values
+  const fixedColors = generateColors({
+    option: { format: 'object2', output: 'rgb-only', prefix: 'fc-' },
     color: { ...defaultColors, ...color }
   }) as Values
 
@@ -39,11 +43,11 @@ export function createConfig(options: Config = {}): CoreConfig {
 
   return merge(
     {
-      property: createProperties(property, coloredProperty),
-      values: merge(colors, values),
-      classes: merge(defaultClasses, transformClasses(utilityClasses), classes) as Classes,
-      aliases,
-      breakpoints: [...defaultBreakpoints, ...breakpoints],
+      property: createProperties(shorthand, coloredShorthand),
+      values: merge(colors,fixedColors, valueAlias),
+      classes: merge(defaultClasses, transformClasses(utilityClass), utilityFirst) as Classes,
+      aliases: alias,
+      breakpoints: [...defaultBreakpoints, ...breakpoint],
       attributify,
       attributifyPrefix,
       ...tenoxuiOption

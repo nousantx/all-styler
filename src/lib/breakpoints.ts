@@ -1,8 +1,6 @@
-import type {Breakpoint} from "@tenoxui/core/full"
+import type { Breakpoint } from '@tenoxui/core/full'
 
-
-
-export const defaultBreakpoints: Breakpoint [] = [
+export const defaultBreakpoints: Breakpoint[] = [
   { name: 'max-sm', max: 640 },
   { name: 'sm', min: 640 },
   { name: 'max-md', max: 767.9 },

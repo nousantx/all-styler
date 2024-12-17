@@ -6,7 +6,6 @@ export const defaultColoredProperties: Property = {
 }
 
 export const defaultProperties: Property = {
-
   // padding
   p: 'padding',
   pt: 'paddingTop',
@@ -67,7 +66,7 @@ export const defaultProperties: Property = {
   'flex-b': 'flexBasis',
   'flex-g': 'flexGrow',
   'flex-s': 'flexShrink',
-  
+
   // gap
   gap: 'gap',
   'gap-y': 'columnGap',

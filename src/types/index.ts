@@ -9,7 +9,7 @@ import type {
   Breakpoint
 } from '@tenoxui/core/full'
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import type { ColorOptions, ColorInput } from '@nousantx/color-generator'
+import type { ColorInput } from '@nousantx/color-generator'
 
 export type UtilityClasses = {
   [className: string]: {
@@ -18,15 +18,15 @@ export type UtilityClasses = {
 }
 
 export interface Config {
-  property?: Property
-  coloredProperty?: Record<string, GetCSSProperty>
-  values?: Values
-  classes?: Classes
-  utilityClasses?: UtilityClasses
-  aliases?: Aliases
-  breakpoints?: Breakpoint[]
+  shorthand?: Property
+  coloredShorthand?: Record<string, GetCSSProperty>
+  valueAlias?: Values
+  utilityFirst?: Classes
+  utilityClass?: UtilityClasses
+  alias?: Aliases
+  breakpoint?: Breakpoint[]
   color?: ColorInput
-  colorOption?: ColorOptions
+  isDark?: boolean
   attributify?: boolean
   attributifyPrefix?: string
   tenoxuiOption?: CoreConfig

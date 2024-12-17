@@ -25,5 +25,8 @@ export const defaultClasses: Classes = {
   flexWrap: {
     'flex-wrap': 'wrap',
     'flex-nowrap': 'nowrap'
+  },
+  fontStyle: {
+    italic: 'italic'
   }
 }
