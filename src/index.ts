@@ -1,11 +1,12 @@
 import { MakeTenoxUI } from '@tenoxui/core/full'
+import type { CoreConfigFull as CoreConfig, Values, Classes } from '@tenoxui/types'
 import { merge, transformClasses } from '@nousantx/someutils'
-import { generateColors } from '@nousantx/color-generator'
-import type { CoreConfig, Values, Classes } from '@tenoxui/core/full'
+// import { generateColors } from '@nousantx/color-generator'
+import { generateColors } from './lib/color/computeColor'
 import { createProperties } from './lib/properties'
 import { defaultClasses } from './lib/classes'
 import { defaultBreakpoints } from './lib/breakpoints'
-import { colors as defaultColors } from './lib/color'
+import { colors as defaultColors, ColorScheme } from './lib/color'
 import { Config, MainOption } from './types'
 
 export function createConfig(options: Config = {}): CoreConfig {
@@ -25,26 +26,31 @@ export function createConfig(options: Config = {}): CoreConfig {
     tenoxuiOption = {}
   } = options
 
-  // generate color aliases for tenoxui
+  const colorScheme: ColorScheme = isDark ? 'dark' : 'light'
+  const inputColors: Record<string, string> = {
+    ...defaultColors.DEFAULT,
+    ...color.DEFAULT,
+    ...color[colorScheme]
+  }
+
+  // generate color aliases for tenoxuic
   const colors = generateColors({
-    option: { format: 'object2', output: 'rgb-only', reverse: isDark },
-    color: { ...defaultColors, ...color }
+    color: inputColors,
+    isDark
   }) as Values
   const fixedColors = generateColors({
-    option: { format: 'object2', output: 'rgb-only', prefix: 'fc-' },
-    color: { ...defaultColors, ...color }
+    color: inputColors,
+    prefix: 'fc-'
   }) as Values
 
   // added custom plugins field
   // see https://github.com/nousantx/tenoxui-styles-kit
-  const usedPlugins = plugins.reduce((acc, plugin) => {
-    return merge(acc, plugin)
-  }, {})
+  const usedPlugins = plugins.reduce((acc, plugin) => merge(acc, plugin), {})
 
   return merge(
     {
       property: createProperties(shorthand, coloredShorthand),
-      values: merge(colors,fixedColors, valueAlias),
+      values: merge(colors, fixedColors, valueAlias),
       classes: merge(defaultClasses, transformClasses(utilityClass), utilityFirst) as Classes,
       aliases: alias,
       breakpoints: [...defaultBreakpoints, ...breakpoint],
@@ -66,14 +72,14 @@ export function init(options: MainOption) {
     engine = MakeTenoxUI
   } = options
 
-  root.querySelectorAll(selectors).forEach(element => {
+  root.querySelectorAll(selectors).forEach((element) => {
     // create tenoxui instance
     const styler = new engine({ element: element as HTMLElement, ...config })
 
     // if the MutationObserver is available, use this instead
     if (useDOM) styler.useDOM()
     // using class names scan method without MutationObserver
-    else element.classList.forEach(className => styler.applyStyles(className))
+    else element.classList.forEach((className) => styler.applyStyles(className))
   })
 }
 
