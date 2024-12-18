@@ -207,6 +207,11 @@
   resolved "https://registry.yarnpkg.com/@tenoxui/property/-/property-1.4.5.tgz#d892398adada12b0f9692b050dea851ce65ffbdf"
   integrity sha512-hAaQTiqPh785Yay7LtGXu4t5ThoH9PVZK1Xd5G6NLh6tO3fBgzLv2n0HIGNAiSVd3Fe4N9OwSMNtMQAKR4RFLw==
 
+"@tenoxui/types@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@tenoxui/types/-/types-0.1.2.tgz#d241031158a115b9edbd62fa9c603d6f592bd06f"
+  integrity sha512-Vvmcj5qN9qqEnGjBx3S3fQD3yty2RdMG2qtssQywBdEbX9ast1nuHCe60ML4q3+40Dfz2LMRh4Ny7vzGta5xPA==
+
 "@types/estree@*", "@types/estree@1.0.6", "@types/estree@^1.0.0":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"

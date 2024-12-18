@@ -1,6 +1,6 @@
 {
   "name": "@nousantx/tenoxui-styler",
-  "version": "0.1.16",
+  "version": "0.1.19",
   "description": "Quick TenoxUI styler with rich features",
   "author": "NOuSantx <nousantx@gmail.com>",
   "license": "MIT",
@@ -37,5 +37,8 @@
     "tenoxui-plugin-utility": "^0.1.1",
     "tslib": "^2.7.0",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@tenoxui/types": "^0.1.2"
   }
 }
