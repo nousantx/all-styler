@@ -1,5 +1,5 @@
 import type {
-  CoreConfig,
+  CoreConfigFull as CoreConfig,
   Property,
   CSSPropertyOrVariable,
   GetCSSProperty,
@@ -7,15 +7,17 @@ import type {
   Classes,
   Aliases,
   Breakpoint
-} from '@tenoxui/core/full'
+} from '@tenoxui/types'
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import type { ColorInput } from '@nousantx/color-generator'
+import { ColorScheme } from '../lib/color'
 
 export type UtilityClasses = {
   [className: string]: {
     [property in CSSPropertyOrVariable]?: string
   }
 }
+
+export type ColorInput = Partial<Record<ColorScheme, Record<string, string>>>
 
 export interface Config {
   shorthand?: Property
