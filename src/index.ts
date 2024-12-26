@@ -29,13 +29,12 @@ export function createConfig(options: Config = {}): CoreConfig {
   const colorScheme: ColorScheme = isDark ? 'dark' : 'light'
   const inputColors: Record<string, string> = {
     ...defaultColors.DEFAULT,
-    ...color.DEFAULT,
-    ...color[colorScheme]
+    ...color.DEFAULT
   }
 
   // generate color aliases for tenoxuic
   const colors = generateColors({
-    color: inputColors,
+    color: { ...inputColors, ...color[colorScheme] },
     isDark
   }) as Values
   const fixedColors = generateColors({
@@ -72,14 +71,14 @@ export function init(options: MainOption) {
     engine = MakeTenoxUI
   } = options
 
-  root.querySelectorAll(selectors).forEach((element) => {
+  root.querySelectorAll(selectors).forEach(element => {
     // create tenoxui instance
     const styler = new engine({ element: element as HTMLElement, ...config })
 
     // if the MutationObserver is available, use this instead
     if (useDOM) styler.useDOM()
     // using class names scan method without MutationObserver
-    else element.classList.forEach((className) => styler.applyStyles(className))
+    else element.classList.forEach(className => styler.applyStyles(className))
   })
 }
 
