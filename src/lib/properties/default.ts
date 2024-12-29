@@ -1,4 +1,4 @@
-import type { Property } from '@tenoxui/core/full'
+import type { Property } from '@tenoxui/types'
 
 export const defaultColoredProperties: Property = {
   bg: 'background',
@@ -54,10 +54,10 @@ export const defaultProperties: Property = {
   'h-mn': 'minHeight',
   box: ['width', 'height'],
   // background related
-  'bg-c': 'backgroundColor',
+  bgc: 'backgroundColor',
   'bg-img': 'backgroundImage',
   'bg-size': 'backgroundSize',
-  'bg-r': 'backgroundRepeat',
+  bgr: 'backgroundRepeat',
   'bg-pn': 'backgroundPosition',
   // flex box
   flex: 'flex',

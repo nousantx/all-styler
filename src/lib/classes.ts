@@ -1,4 +1,4 @@
-import type { Classes } from '@tenoxui/core/full'
+import type { Classes } from '@tenoxui/types'
 import { createSameValue } from '@nousantx/someutils'
 
 export const defaultClasses: Classes = {
