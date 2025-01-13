@@ -197,10 +197,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.28.0.tgz#cb313feef9ac6e3737067fdf34f42804ac65a6f2"
   integrity sha512-Bvno2/aZT6usSa7lRDL2+hMjVAGjuqaymF1ApZm31JXzniR/hvr14jpU+/z4X6Gt5BPlzosscyJZGUvguXIqeQ==
 
-"@tenoxui/core@^1.3.5":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@tenoxui/core/-/core-1.3.5.tgz#bf78e2d192e7b0a7a8032ad5b5b773ae87e5d65c"
-  integrity sha512-Cd5Ek6VcoiPb1TeWWdLTrXfkIOmCKkWk5dVA4L+NX9T6JH2lPQgU4Ui65/NVeVAbgR5p6kD+ljRGbVZd/hBa5A==
+"@tenoxui/core@^1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@tenoxui/core/-/core-1.3.7.tgz#223dcfe4fcb8b5b3ab5919165956e37459f4e0b4"
+  integrity sha512-ikvtmRXMdwPNE7wKaX/OmoGkFfV7CYmBb0faisaykWhlxAVloV2JpJFmB5xM1XtedhLhqdJ7GxQdH2fCfcyNmg==
 
 "@tenoxui/property@^1.4.5":
   version "1.4.5"
