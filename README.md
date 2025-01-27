@@ -1,5 +1,19 @@
 # TenoxUI Styler
 
+## Installation
+
+```bash
+npm i @nousantx/tenoxui-styler
+```
+
+Or UMD :
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@nousantx/tenoxui-styler@latest/dist/index.umd.min.js"></script>
+```
+
+Note that this package only have `esm` and `umd` build.
+
 ## Usage
 
 ### React
@@ -14,7 +28,7 @@ export function App() {
       property: { bg: 'background' }
     })
 
-    init(config, '*[class]')
+    init({ config })
   }, [])
 
   return <div class="bg-red"></div>
@@ -30,10 +44,10 @@ export function App() {
     property: { bg: 'background' }
   })
 
-  __nsx_styler.init(config, '*[class]')
+  __nsx_styler.init({ config })
 </script>
 ```
 
 ## LICENSE
 
-MIT
+MIT © 2024-Present
